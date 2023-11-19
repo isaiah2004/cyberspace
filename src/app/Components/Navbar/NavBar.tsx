@@ -15,6 +15,8 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -29,7 +31,8 @@ export default function WithSubnavigation() {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
+        // bg={useColorModeValue("white", "gray.800")}
+        bg={"#ffffff0"}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
@@ -114,8 +117,17 @@ const DesktopNav = () => {
                   textDecoration: "none",
                   color: linkHoverColor,
                 }}
+                display={"flex"}
               >
-                {navItem.label}
+                <Text whiteSpace="nowrap">{navItem.label}</Text>
+                {navItem.children && ( 
+                <Icon
+                as={ChevronDownIcon}
+                transition={"all .25s ease-in-out"}
+                w={6}
+                h={6}
+              />
+              )}
               </Box>
             </PopoverTrigger>
 
@@ -127,12 +139,14 @@ const DesktopNav = () => {
                 p={4}
                 rounded={"xl"}
                 minW={"sm"}
+                width={1000}
+                position={"relative"}
               >
-                <Stack>
+                <Grid templateColumns="repeat(4, 1fr)" gap={0}>
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
-                </Stack>
+                </Grid>
               </PopoverContent>
             )}
           </Popover>
@@ -144,17 +158,18 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Box
-      as="a"
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
+    <GridItem h="100%" bg="white.500">
+      <Box
+        as="a"
+        href={href}
+        role={"group"}
+        display={"flex"}
+        p={2}
+        rounded={"md"}
+        _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+        // bg={"#8f8"}
+      >
+        <Box width={200}>
           <Text
             transition={"all .3s ease"}
             _groupHover={{ color: "pink.400" }}
@@ -176,8 +191,8 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
         >
           <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
-      </Stack>
-    </Box>
+      </Box>
+    </GridItem>
   );
 };
 
@@ -209,6 +224,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         _hover={{
           textDecoration: "none",
         }}
+        display={"flex"}
+        flexDirection={"row"}
       >
         <Text
           fontWeight={600}
@@ -257,30 +274,109 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Whatwedo",
+    label: "What we do",
     children: [
       {
-        label: "Explore Design Work",
+        label: "Cyber Risk Management",
         subLabel: "Trending Design to inspire you",
         href: "#",
       },
       {
-        label: "New & Noteworthy",
+        label: "Threat Detection",
+        subLabel: "Up-and-coming Designers",
+        href: "#",
+      },
+      {
+        label: "Cyber Risk Management",
+        subLabel: "Trending Design to inspire you",
+        href: "#",
+      },
+      {
+        label: "Threat Detection",
+        subLabel: "Up-and-coming Designers",
+        href: "#",
+      },
+      {
+        label: "Cyber Risk Management",
+        subLabel: "Trending Design to inspire you",
+        href: "#",
+      },
+      {
+        label: "Threat Detection",
+        subLabel: "Up-and-coming Designers",
+        href: "#",
+      },
+      {
+        label: "Cyber Risk Management",
+        subLabel: "Trending Design to inspire you",
+        href: "#",
+      },
+      {
+        label: "Threat Detection",
         subLabel: "Up-and-coming Designers",
         href: "#",
       },
     ],
   },
   {
-    label: "WhoweHelp",
+    label: "Who we Help",
     children: [
       {
-        label: "Job Board",
+        label: "Hospitals",
         subLabel: "Find your dream design job",
         href: "#",
       },
       {
-        label: "Freelance Projects",
+        label: "Government",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+      {
+        label: "Hospitals",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Government",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+      {
+        label: "Hospitals",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Government",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+      {
+        label: "Hospitals",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Government",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },{
+        label: "Hospitals",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Government",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+      {
+        label: "Hospitals",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Government",
         subLabel: "An exclusive list for contract work",
         href: "#",
       },
